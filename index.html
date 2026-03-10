@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 3학년 7반 학급 알림판 - 안성고등학교</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a73e8;
+            --primary-green: #34a853;
+            --primary-yellow: #fbbc04;
+            --primary-red: #ea4335;
+            --bg-light: #f8f9fa;
+            --text-dark: #202124;
+            --text-gray: #5f6368;
+            --border-color: #e8eaed;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --card-shadow-hover: 0 4px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* 네비게이션 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            padding: 1rem 0;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .navbar-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            background: var(--bg-light);
+            color: var(--primary-blue);
+        }
+
+        /* 모바일 메뉴 토글 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* 헤더 배너 */
+        .hero-banner {
+            background: linear-gradient(135deg, #1a73e8 0%, #34a853 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .hero-date {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        /* 섹션 */
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* 카드 그리드 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* 카드 스타일 */
+        .card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .card-button {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .card-button:hover {
+            background: #1557b0;
+        }
+
+        /* 알림 배너 */
+        .alert-banner {
+            background: #fff3e0;
+            border-left: 4px solid var(--primary-yellow);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-banner.urgent {
+            background: #ffebee;
+            border-left-color: var(--primary-red);
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-text {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* 테이블 */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg-light);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .badge-진로 {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-학사 {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-시험 {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .badge-행사 {
+            background: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        /* D-day 카운터 */
+        .dday-counter {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-yellow) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .dday-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .dday-number {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .dday-date {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        /* 탭 */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            transition: all 0.3s;
+            margin-bottom: -2px;
+        }
+
+        .tab-button.active {
+            color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 아코디언 */
+        .accordion {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .accordion-header {
+            padding: 1.25rem;
+            background: var(--bg-light);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #e8eaed;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .accordion-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .accordion-body li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .accordion-body li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* 자료 카드 */
+        .resource-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 학과 카드 */
+        .major-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .major-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+        }
+
+        .major-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .major-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .major-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* 푸터 */
+        footer {
+            background: var(--bg-light);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-info {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-update {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dday-number {
+                font-size: 2rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .major-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 스크롤 애니메이션 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1557b0;
+        }
+
+        .btn-success {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #2d8e47;
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* 공지사항 새 항목 */
+        .new-badge {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* 구글 서비스 안내 박스 */
+        .service-box {
+            background: #f8f9fa;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .service-box-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .service-box-text {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">3-7 학급 알림판</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#notices">📢 공지사항</a></li>
+                <li><a href="#career">🎓 진로진학</a></li>
+                <li><a href="#programs">📝 체험신청</a></li>
+                <li><a href="#schedule">📅 일정</a></li>
+                <li><a href="#resources">📂 자료실</a></li>
+                <li><a href="#life">🏫 학급생활</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 헤더 배너 -->
+    <header class="hero-banner" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">2026 3학년 7반 학급 알림판</h1>
+            <p class="hero-subtitle">안성고등학교 3학년 7반 학생들을 위한 학급 안내 페이지입니다.</p>
+            <p class="hero-description">공지사항, 진로진학 정보, 학교 일정, 진로 체험 신청 등을 확인할 수 있습니다.</p>
+            <p class="hero-date" id="currentDate"></p>
+        </div>
+    </header>
+
+    <!-- 메인 카드 메뉴 -->
+    <div class="container">
+        <div class="card-grid">
+            <div class="card" onclick="scrollToSection('notices')">
+                <div class="card-icon">📢</div>
+                <h3 class="card-title">학급 주요 안내 사항</h3>
+                <p class="card-description">수행평가, 모의고사, 학교 행사 공지를 확인하세요</p>
+                <a href="#notices" class="card-button">바로가기</a>
+            </div>
+
+            <div class="card" onclick="scrollToSection('career')">
+                <div class="card-icon">🎓</div>
+                <h3 class="card-title">진로진학 정보 안내</h3>
+                <p class="card-description">대입 수시/정시, 학과 정보, 입시 자료를 확인하세요</p>
+                <a href="#career" class="card-button">바로가기</a>
+            </div>
+
+            <div class="card" onclick="scrollToSection('programs')">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">진로진학 체험 신청</h3>
+                <p class="card-description">대학 학과 체험, 진로 특강, 모의 면접을 신청하세요</p>
+                <a href="#programs" class="card-button">바로가기</a>
+            </div>
+
+            <div class="card" onclick="scrollToSection('schedule')">
+                <div class="card-icon">📅</div>
+                <h3 class="card-title">학교 일정 정리</h3>
+                <p class="card-description">모의고사, 중간/기말고사, 학교 행사 일정을 확인하세요</p>
+                <a href="#schedule" class="card-button">바로가기</a>
+            </div>
+
+            <div class="card" onclick="scrollToSection('resources')">
+                <div class="card-icon">📂</div>
+                <h3 class="card-title">학습 자료실</h3>
+                <p class="card-description">수행평가 안내, 수업 자료, 시험 대비 자료를 다운로드하세요</p>
+                <a href="#resources" class="card-button">바로가기</a>
+            </div>
+
+            <div class="card" onclick="scrollToSection('life')">
+                <div class="card-icon">🏫</div>
+                <h3 class="card-title">학급 생활 안내</h3>
+                <p class="card-description">학급 규칙, 휴대폰 규정, 과제 제출 방법을 확인하세요</p>
+                <a href="#life" class="card-button">바로가기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 섹션 1: 학급 주요 안내 사항 -->
+    <section id="notices">
+        <div class="container">
+            <h2 class="section-title">📢 학급 주요 안내 사항</h2>
+            <p class="section-description">수행평가, 모의고사, 학교 행사 등 중요한 공지사항을 확인하세요</p>
+
+            <!-- 긴급 공지 -->
+            <div class="alert-banner urgent">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <div class="alert-title">3월 모의고사 안내</div>
+                    <div class="alert-text">3월 26일(목) 전국 모의고사가 실시됩니다. 수험표와 필기구를 준비해주세요.</div>
+                </div>
+            </div>
+
+            <div class="alert-banner">
+                <div class="alert-icon">📝</div>
+                <div class="alert-content">
+                    <div class="alert-title">수행평가 일정 확인</div>
+                    <div class="alert-text">4월 첫째 주 수행평가 일정이 공지되었습니다. 각 과목별 안내사항을 확인해주세요.</div>
+                </div>
+            </div>
+
+            <!-- 공지사항 테이블 -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">번호</th>
+                            <th style="width: 100px;">날짜</th>
+                            <th style="width: 80px;">분류</th>
+                            <th>내용</th>
+                            <th style="width: 80px;">첨부</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>3/25</td>
+                            <td><span class="badge badge-진로">진로</span></td>
+                            <td>진로 특강 안내 (4/2 예정) <span class="new-badge">NEW</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>3/12</td>
+                            <td><span class="badge badge-학사">학사</span></td>
+                            <td>수행평가 일정 안내</td>
+                            <td>📄</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3/10</td>
+                            <td><span class="badge badge-시험">시험</span></td>
+                            <td>4월 모의고사 준비 안내</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>3/7</td>
+                            <td><span class="badge badge-행사">행사</span></td>
+                            <td>입학식 및 3월 행사 일정</td>
+                            <td>📄</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>3/5</td>
+                            <td><span class="badge badge-시험">시험</span></td>
+                            <td>3월 전국 모의고사 안내</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 2: 진로진학 정보 안내 -->
+    <section id="career" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">🎓 진로진학 정보 안내</h2>
+            <p class="section-description">대입 정보, 학과 정보, 입시 자료를 확인하고 진로를 준비하세요</p>
+
+            <!-- 탭 메뉴 -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('admission')">대학 입시 정보</button>
+                <button class="tab-button" onclick="switchTab('majors')">학과 정보</button>
+                <button class="tab-button" onclick="switchTab('materials')">입시 자료</button>
+            </div>
+
+            <!-- 대학 입시 정보 -->
+            <div id="admission-tab" class="tab-content active">
+                <div class="card-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <h4 class="resource-title">수시 전형 안내</h4>
+                        <p class="resource-description">학생부종합전형, 학생부교과전형, 논술전형, 실기전형 등 수시 전형의 모든 것을 확인하세요.</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-gray);">
+                            <li style="padding: 0.3rem 0;">• 학생부종합전형: 학생부 + 자기소개서 + 면접</li>
+                            <li style="padding: 0.3rem 0;">• 학생부교과전형: 내신 성적 중심 평가</li>
+                            <li style="padding: 0.3rem 0;">• 논술전형: 논술 성적 중심</li>
+                            <li style="padding: 0.3rem 0;">• 실기전형: 실기 능력 평가</li>
+                        </ul>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">📝</div>
+                        <h4 class="resource-title">정시 전형 안내</h4>
+                        <p class="resource-description">수능 위주 전형으로 가/나/다군으로 구분됩니다. 수능 성적과 대학별 반영 비율을 확인하세요.</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-gray);">
+                            <li style="padding: 0.3rem 0;">• 가군: 12월 말 ~ 1월 초 지원</li>
+                            <li style="padding: 0.3rem 0;">• 나군: 1월 초 ~ 1월 중순 지원</li>
+                            <li style="padding: 0.3rem 0;">• 다군: 1월 중순 ~ 1월 말 지원</li>
+                            <li style="padding: 0.3rem 0;">• 각 군별 1개씩 총 3개 대학 지원 가능</li>
+                        </ul>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">🎯</div>
+                        <h4 class="resource-title">2026 수능 일정</h4>
+                        <p class="resource-description">2026학년도 대학수학능력시험 주요 일정을 확인하세요.</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-gray);">
+                            <li style="padding: 0.3rem 0;">• 수능 원서 접수: 9월 초</li>
+                            <li style="padding: 0.3rem 0;">• 수능 시험일: <strong>11월 13일(목)</strong></li>
+                            <li style="padding: 0.3rem 0;">• 수능 성적 발표: 12월 초</li>
+                            <li style="padding: 0.3rem 0;">• 정시 원서 접수: 12월 말 ~ 1월</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 학과 정보 -->
+            <div id="majors-tab" class="tab-content">
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">인기 학과 정보</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem;">계열별 인기 학과를 탐색하고 자신에게 맞는 진로를 찾아보세요</p>
+                
+                <div class="major-grid">
+                    <div class="major-card">
+                        <div class="major-icon">🏥</div>
+                        <div class="major-name">의학계열</div>
+                    </div>
+                    <div class="major-card">
+                        <div class="major-icon">⚙️</div>
+                        <div class="major-name">공학계열</div>
+                    </div>
+                    <div class="major-card">
+                        <div class="major-icon">💼</div>
+                        <div class="major-name">경영/경제</div>
+                    </div>
+                    <div class="major-card">
+                        <div class="major-icon">👨‍🏫</div>
+                        <div class="major-name">사범/교육</div>
+                    </div>
+                    <div class="major-card">
+                        <div class="major-icon">🎨</div>
+                        <div class="major-name">예술/체육</div>
+                    </div>
+                    <div class="major-card">
+                        <div class="major-icon">💻</div>
+                        <div class="major-name">IT/컴퓨터</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-blue);">💡 학과 선택 팁</h4>
+                    <ul style="line-height: 1.8; color: var(--text-gray);">
+                        <li>자신의 흥미와 적성을 먼저 파악하세요</li>
+                        <li>학과의 교육과정과 졸업 후 진로를 확인하세요</li>
+                        <li>대학별 학과 특성과 취업률을 비교해보세요</li>
+                        <li>여러 진로 체험 프로그램에 참여해보세요</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 입시 자료 -->
+            <div id="materials-tab" class="tab-content">
+                <div class="card-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📁</div>
+                        <h4 class="resource-title">대학 모집요강</h4>
+                        <p class="resource-description">주요 대학의 2026학년도 모집요강을 확인하세요</p>
+                        <div class="service-box" style="margin-top: 1rem; padding: 1rem;">
+                            <div class="service-box-icon">📂</div>
+                            <div class="service-box-text">Google Drive 폴더가 여기에 연결됩니다</div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">📅</div>
+                        <h4 class="resource-title">대입 일정표</h4>
+                        <p class="resource-description">2026학년도 대입 주요 일정을 한눈에 확인하세요</p>
+                        <div class="service-box" style="margin-top: 1rem; padding: 1rem;">
+                            <div class="service-box-icon">📊</div>
+                            <div class="service-box-text">대입 일정표 파일이 여기에 표시됩니다</div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">📊</div>
+                        <h4 class="resource-title">입시 분석 자료</h4>
+                        <p class="resource-description">전년도 입시 결과 및 입시 분석 자료를 확인하세요</p>
+                        <div class="service-box" style="margin-top: 1rem; padding: 1rem;">
+                            <div class="service-box-icon">📈</div>
+                            <div class="service-box-text">입시 분석 자료가 여기에 업로드됩니다</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 3: 진로진학 체험 신청 -->
+    <section id="programs">
+        <div class="container">
+            <h2 class="section-title">📝 진로진학 체험 신청</h2>
+            <p class="section-description">다양한 진로 체험 프로그램에 신청하고 미래를 설계하세요</p>
+
+            <div class="alert-banner">
+                <div class="alert-icon">ℹ️</div>
+                <div class="alert-content">
+                    <div class="alert-title">신청 안내</div>
+                    <div class="alert-text">각 프로그램의 '신청하기' 버튼을 클릭하면 Google Forms로 연결됩니다. 신청 마감일을 확인하고 기한 내 신청해주세요.</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>프로그램</th>
+                            <th>일정</th>
+                            <th>대상</th>
+                            <th>내용</th>
+                            <th style="width: 120px;">신청</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>대학 학과 체험</strong></td>
+                            <td>4월 중</td>
+                            <td>전체</td>
+                            <td>관심 학과 직접 방문 및 체험</td>
+                            <td><button class="btn btn-primary" onclick="alert('Google Forms가 여기에 연결됩니다')">신청하기</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>진로 특강</strong></td>
+                            <td>4/2(목)</td>
+                            <td>전체</td>
+                            <td>대입 전략 및 진로 설정 특강</td>
+                            <td><button class="btn btn-primary" onclick="alert('Google Forms가 여기에 연결됩니다')">신청하기</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>모의 면접</strong></td>
+                            <td>5월 중</td>
+                            <td>희망자</td>
+                            <td>대학 입시 면접 준비 및 실전 연습</td>
+                            <td><button class="btn btn-primary" onclick="alert('Google Forms가 여기에 연결됩니다')">신청하기</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>대학 탐방</strong></td>
+                            <td>6월 중</td>
+                            <td>희망자</td>
+                            <td>주요 대학 캠퍼스 투어</td>
+                            <td><button class="btn btn-primary" onclick="alert('Google Forms가 여기에 연결됩니다')">신청하기</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 12px; border-left: 4px solid var(--primary-blue);">
+                <h4 style="margin-bottom: 1rem;">📌 신청 전 확인사항</h4>
+                <ul style="line-height: 1.8; color: var(--text-gray);">
+                    <li>각 프로그램별 신청 마감일을 확인하세요</li>
+                    <li>중복 신청이 가능한 프로그램도 있으니 관심 있는 모든 프로그램에 신청하세요</li>
+                    <li>신청 후 담임 선생님의 승인이 필요한 경우가 있습니다</li>
+                    <li>프로그램 참여 시 학부모 동의서가 필요할 수 있습니다</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 4: 학교 일정 정리 -->
+    <section id="schedule" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">📅 학교 일정 정리</h2>
+            <p class="section-description">2026학년도 주요 학사 일정을 확인하고 시험과 행사를 준비하세요</p>
+
+            <!-- D-day 카운터 -->
+            <div class="dday-counter">
+                <div class="dday-title">🎯 2026 대학수학능력시험</div>
+                <div class="dday-number" id="dday">D-253</div>
+                <div class="dday-date">2026년 11월 13일 (목)</div>
+            </div>
+
+            <!-- 학사 일정 테이블 -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">날짜</th>
+                            <th style="width: 60px;">요일</th>
+                            <th>일정</th>
+                            <th style="width: 120px;">비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>3/26</strong></td>
+                            <td>목</td>
+                            <td><strong>전국 모의고사</strong></td>
+                            <td><span class="badge badge-시험">3월</span></td>
+                        </tr>
+                        <tr>
+                            <td>4/2</td>
+                            <td>목</td>
+                            <td>진로 특강</td>
+                            <td><span class="badge badge-진로">7반</span></td>
+                        </tr>
+                        <tr style="background: #ffebee;">
+                            <td><strong>4/15</strong></td>
+                            <td>수</td>
+                            <td><strong>중간고사 시작</strong></td>
+                            <td><span class="badge badge-시험">~4/19</span></td>
+                        </tr>
+                        <tr>
+                            <td>5/7</td>
+                            <td>목</td>
+                            <td>체육대회</td>
+                            <td><span class="badge badge-행사">전교</span></td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>6/4</strong></td>
+                            <td>목</td>
+                            <td><strong>전국 모의고사</strong></td>
+                            <td><span class="badge badge-시험">6월</span></td>
+                        </tr>
+                        <tr style="background: #ffebee;">
+                            <td><strong>7/2</strong></td>
+                            <td>목</td>
+                            <td><strong>기말고사 시작</strong></td>
+                            <td><span class="badge badge-시험">~7/6</span></td>
+                        </tr>
+                        <tr>
+                            <td>9/1</td>
+                            <td>화</td>
+                            <td>수시 원서 접수 시작</td>
+                            <td><span class="badge badge-학사">대입</span></td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>9/3</strong></td>
+                            <td>목</td>
+                            <td><strong>전국 모의고사</strong></td>
+                            <td><span class="badge badge-시험">9월</span></td>
+                        </tr>
+                        <tr style="background: #e8f5e9;">
+                            <td><strong>11/13</strong></td>
+                            <td>목</td>
+                            <td><strong>🎯 대학수학능력시험</strong></td>
+                            <td><span class="badge badge-시험">수능</span></td>
+                        </tr>
+                        <tr>
+                            <td>12/초</td>
+                            <td>-</td>
+                            <td>수능 성적 발표</td>
+                            <td><span class="badge badge-학사">대입</span></td>
+                        </tr>
+                        <tr>
+                            <td>12/말~1월</td>
+                            <td>-</td>
+                            <td>정시 원서 접수</td>
+                            <td><span class="badge badge-학사">가/나/다군</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 구글 캘린더 연동 안내 -->
+            <div class="service-box" style="margin-top: 2rem;">
+                <div class="service-box-icon">📆</div>
+                <div class="service-box-text">Google Calendar가 여기에 임베드됩니다<br>월별 일정을 한눈에 확인할 수 있습니다</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 5: 학습 자료실 -->
+    <section id="resources">
+        <div class="container">
+            <h2 class="section-title">📂 학습 자료실</h2>
+            <p class="section-description">수행평가, 수업 자료, 시험 대비 자료를 다운로드하세요</p>
+
+            <div class="card-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <h4 class="resource-title">수행평가 안내</h4>
+                    <p class="resource-description">각 과목별 수행평가 기준 및 일정을 확인하세요</p>
+                    <a href="#" class="resource-link" onclick="alert('Google Drive 폴더가 여기에 연결됩니다'); return false;">자료 보기 →</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <h4 class="resource-title">수업 자료</h4>
+                    <p class="resource-description">교과별 학습 자료 및 프린트 자료를 다운로드하세요</p>
+                    <a href="#" class="resource-link" onclick="alert('Google Drive 폴더가 여기에 연결됩니다'); return false;">자료 보기 →</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <h4 class="resource-title">시험 대비 자료</h4>
+                    <p class="resource-description">기출문제, 모의고사 분석 자료를 확인하세요</p>
+                    <a href="#" class="resource-link" onclick="alert('Google Drive 폴더가 여기에 연결됩니다'); return false;">자료 보기 →</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🔗</div>
+                    <h4 class="resource-title">유용한 링크</h4>
+                    <p class="resource-description">EBS, 수능특강, 학교 홈페이지 등 유용한 사이트 모음</p>
+                    <div style="margin-top: 1rem;">
+                        <div style="padding: 0.5rem 0;"><a href="https://www.ebs.co.kr" target="_blank" class="resource-link">• EBS 바로가기</a></div>
+                        <div style="padding: 0.5rem 0;"><a href="https://www.suneung.re.kr" target="_blank" class="resource-link">• 수능 홈페이지</a></div>
+                        <div style="padding: 0.5rem 0;"><a href="#" class="resource-link">• 안성고 홈페이지</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Drive 임베드 영역 -->
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">📁 학급 공유 자료함</h3>
+                <div class="service-box">
+                    <div class="service-box-icon">📂</div>
+                    <div class="service-box-text">Google Drive 폴더 전체 보기<br>iframe으로 폴더 내용이 여기에 표시됩니다</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 섹션 6: 학급 생활 안내 -->
+    <section id="life" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">🏫 학급 생활 안내</h2>
+            <p class="section-description">학급 규칙과 생활 안내를 확인하고 즐거운 학교생활을 만들어가요</p>
+
+            <!-- 아코디언 -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span><strong>📜 학급 규칙</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>수업 시작 5분 전까지 착석하여 수업을 준비합니다</li>
+                            <li>휴대폰은 등교 시 보관함에 제출하고 수업 중에는 사용하지 않습니다</li>
+                            <li>청소 당번표를 준수하여 깨끗한 교실 환경을 만듭니다</li>
+                            <li>서로 존중하는 언어를 사용하고 친구들을 배려합니다</li>
+                            <li>학교 시설물을 소중히 다루고 공공질서를 지킵니다</li>
+                            <li>지각, 조퇴, 결석 시 반드시 담임 선생님께 사전 연락합니다</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span><strong>📱 휴대폰 사용 규정</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>등교 시 교실 앞 휴대폰 보관함에 제출합니다</li>
+                            <li>점심시간(12:30~13:00) 및 방과후에 사용 가능합니다</li>
+                            <li>수업 중 휴대폰 사용이 적발될 경우 즉시 수거됩니다</li>
+                            <li>긴급한 연락이 필요한 경우 담임 선생님께 말씀드리고 허락을 받습니다</li>
+                            <li>휴대폰으로 타인을 촬영하거나 사생활을 침해하는 행위는 금지됩니다</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span><strong>📝 과제 제출 방법</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>과제는 제출 기한을 반드시 지켜주세요 (지각 제출 시 감점 가능)</li>
+                            <li><strong>온라인 제출:</strong> Google Classroom 또는 각 과목 선생님께서 안내하신 플랫폼을 이용합니다</li>
+                            <li><strong>오프라인 제출:</strong> 담당 교과 선생님께 직접 제출하거나 과제함에 넣어주세요</li>
+                            <li>과제 제출이 어려운 경우 사전에 담당 선생님께 말씀드리세요</li>
+                            <li>표절이나 대리 제출은 절대 금지이며, 적발 시 0점 처리됩니다</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span><strong>💬 상담 신청 방법</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li><strong>담임 선생님 상담:</strong> 점심시간(12:30~13:00) 또는 방과후 시간 이용</li>
+                            <li><strong>진로 상담:</strong> 매주 화요일, 목요일 방과후 진로상담실에서 진행</li>
+                            <li><strong>온라인 상담 신청:</strong> 아래 버튼을 클릭하여 상담 신청서를 작성해주세요</li>
+                            <li>긴급 상담이 필요한 경우 언제든지 담임 선생님께 연락주세요</li>
+                            <li>모든 상담 내용은 비밀이 보장됩니다</li>
+                        </ul>
+                        <button class="btn btn-success" style="margin-top: 1rem;" onclick="alert('상담 신청 Google Form이 여기에 연결됩니다')">상담 신청하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 학급 정보 카드 -->
+            <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--card-shadow);">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-blue);">👥 학급 정보</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.25rem;">학급</div>
+                        <div style="font-weight: 600;">3학년 7반</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.25rem;">인원</div>
+                        <div style="font-weight: 600;">남 15명 / 여 15명 (총 30명)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.25rem;">담임 선생님</div>
+                        <div style="font-weight: 600;">000 선생님</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.25rem;">교실 위치</div>
+                        <div style="font-weight: 600;">본관 3층</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-title">안성고등학교 3학년 7반</div>
+            <div class="footer-info">📍 경기도 안성시 (학교 주소)</div>
+            <div class="footer-info">☎️ 담임 선생님 연락처: 이메일 또는 학교 대표번호</div>
+            <div class="footer-info">📧 학급 이메일: class3-7@anseong.hs.kr</div>
+            <div class="footer-update">
+                최종 업데이트: <span id="updateDate"></span><br>
+                <small style="color: var(--text-gray);">이 사이트는 학급 학생들의 편의를 위해 제작되었습니다</small>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 현재 날짜 표시
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            };
+            const dateStr = now.toLocaleDateString('ko-KR', options);
+            document.getElementById('currentDate').textContent = dateStr;
+            document.getElementById('updateDate').textContent = now.toLocaleDateString('ko-KR');
+        }
+
+        // D-day 계산
+        function calculateDday() {
+            const today = new Date();
+            const suneung = new Date('2026-11-13');
+            const diff = Math.ceil((suneung - today) / (1000 * 60 * 60 * 24));
+            
+            if (diff > 0) {
+                document.getElementById('dday').textContent = `D-${diff}`;
+            } else if (diff === 0) {
+                document.getElementById('dday').textContent = 'D-DAY';
+            } else {
+                document.getElementById('dday').textContent = `D+${Math.abs(diff)}`;
+            }
+        }
+
+        // 메뉴 토글
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // 섹션으로 스크롤
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // 모바일 메뉴 닫기
+                const menu = document.getElementById('navMenu');
+                menu.classList.remove('active');
+            }
+        }
+
+        // 탭 전환
+        function switchTab(tabName) {
+            // 모든 탭 버튼 비활성화
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 모든 탭 콘텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 선택한 탭 활성화
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        // 아코디언 토글
+        function toggleAccordion(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // 카드 클릭 시 스크롤 방지
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'A') {
+                    const link = this.querySelector('a');
+                    if (link) {
+                        const href = link.getAttribute('href');
+                        if (href && href.startsWith('#')) {
+                            e.preventDefault();
+                            scrollToSection(href.substring(1));
+                        }
+                    }
+                }
+            });
+        });
+
+        // 페이지 로드 시 실행
+        window.addEventListener('load', function() {
+            updateDate();
+            calculateDday();
+        });
+
+        // 네비게이션 링크 클릭 이벤트
+        document.querySelectorAll('.navbar-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+    </script>
+</body>
+</html>
